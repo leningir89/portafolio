@@ -235,20 +235,28 @@ p{
 }
 
 .Work-item{
-    display: inline-block;
+    display: inline-block;  
 }
 
 .Work-imageContainer{
     margin: 0 2em 1em 0;
+}
+.Work-image{
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+a .Work-image:hover{
+    border-color: #00adad;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .Work-description{
     color: #515151;
     font-size: 1.1em;
     font-style: italic;
-}
-.Work-image{
-    
 }
 
 /* Footer */
