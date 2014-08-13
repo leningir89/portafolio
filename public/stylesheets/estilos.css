@@ -125,7 +125,7 @@ p{
 }
 
 .MainMenu-item{
-    display: inline-block;
+    display: inline-block;  
 }
 
 .MainMenu-link{
@@ -239,7 +239,7 @@ p{
 }
 
 .Work-imageContainer{
-    margin: 0 2em 1em 0;
+    margin: 0 2em 1em 0; 
 }
 .Work-image{
     border: 1px solid #dddddd;
