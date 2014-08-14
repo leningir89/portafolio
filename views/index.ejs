@@ -134,16 +134,19 @@
         </section>
         <footer id="contacto" class="Footer">
             <div class="Footer-left">
+                <% if(typeof mensaje != 'undefined') { %>
+                         <%= mensaje %>
+                <% } %>
                 <h3 class="Footer-title ">Contacto</h3>
                 <p> Información de contacto.</p>
                 <p class="u-notMargin"><span class="icon-mail"></span> ing.leningir@gmail.com</p>
                 <p class="u-notMargin"><span class="icon-skype"></span> leningir</p>
                 <p class="Footer-description">Si quieres contratarme puedes escribirme en este pequeño formulario.</p>
             </div>
-            <form action="" class="Footer-form">
-                <input type="text" placeholder="Nombre" class="Footer-input">
-                <input type="email" placeholder="Email" class="Footer-input">
-                <textarea placeholder="Motivo" class="Footer-textarea"></textarea>
+            <form action="/" class="Footer-form" method="post">
+                <input type="text" placeholder="Nombre" class="Footer-input" name="name" required>
+                <input type="email" placeholder="Email" class="Footer-input" name="email" required>
+                <textarea placeholder="Motivo" class="Footer-textarea" name="motive" required></textarea>
                 <button type="submit" class="Footer-button">Contactarme</button>
             </form>
         </footer>    
