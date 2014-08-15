@@ -56,7 +56,6 @@
 .icon-mail:before {
     content: "\e606";
     font-size: 1em;    
-    color: black;
 }
 
 
@@ -69,7 +68,7 @@
     text-align: center;
 }
 .u-notDisplay{
-    display: block;
+    display: none;
 }
 .u-alert{
     padding: 10px;
@@ -285,9 +284,10 @@ a .Work-image:hover{
 }
 
 .Footer-left{
+    color: #515151;
     width: 400px;
     display:  inline-block;
-    vertical-align: top;
+    vertical-align: top;    
 }
 .Footer-form{
     padding: 2em;

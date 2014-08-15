@@ -27,11 +27,25 @@ function save_contact(data){
             console.log(response.responseText);
         }
       }).done(function(respuesta){ 
-           console.log(respuesta);
+        console.log(respuesta);
+           $('form .u-alert').html(respuesta);
+           setTimeout(show_message , 300) 
            clean_form();
       });
 
 }
+
+function show_message() 
+{
+  $('form .u-notDisplay').show("slow"); 
+  setTimeout(hide_message, 4000) 
+}
+
+function hide_message() 
+{ 
+  $('form .u-notDisplay').hide("slow"); 
+}
+
 
 function clean_form(){
 

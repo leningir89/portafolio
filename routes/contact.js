@@ -1,5 +1,7 @@
 var express = require('express');
 var managers = require('../lib/managers')
+var debug = require('debug')('my-aplication');
+var transporter = require('../lib/mail')
 var router = express.Router();
 
 /* GET users listing. */
@@ -8,12 +10,17 @@ router.post('/', function(req, res) {
 	var object = JSON.parse(req.body.data);
 	var name = object.name;
 	var email = object.email;
-	var motive = object.motive;
-	
+	var motive = object.motive;	
+
 	if(managers.contact.validates_fields(name,email,motive))
-	{
-		res.send("Todos los campos son obligatorios");
+	{		
+		res.send(JSON.stringify('Todos los campos son obligatorios'));
 	}
+	if(! managers.contact.valid_email(email))
+	{	
+		res.send(JSON.stringify('El email no es valido'));	
+	}
+
 	// // setup e-mail data with unicode symbols
 	// var mailOptions = {
 	//     from: "'" + name + "<" + email + ">'", // sender address
@@ -32,7 +39,7 @@ router.post('/', function(req, res) {
 	//     }
 	// });*/
 	
-  	res.send(req.body.data);
+  	res.send(JSON.stringify('<strong>Bien hecho!</strong> tu mensaje fue enviado exitosamente.'));
 
 });
 
