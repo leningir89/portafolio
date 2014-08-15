@@ -1,4 +1,5 @@
 var express = require('express');
+var managers = require('../lib/managers')
 var router = express.Router();
 
 /* GET users listing. */
@@ -8,7 +9,11 @@ router.post('/', function(req, res) {
 	var name = object.name;
 	var email = object.email;
 	var motive = object.motive;
-	console.log(email);
+	
+	if(managers.contact.validates_fields(name,email,motive))
+	{
+		res.send("Todos los campos son obligatorios");
+	}
 	// // setup e-mail data with unicode symbols
 	// var mailOptions = {
 	//     from: "'" + name + "<" + email + ">'", // sender address

@@ -68,7 +68,20 @@
     padding-bottom: .5em;
     text-align: center;
 }
-
+.u-notDisplay{
+    display: block;
+}
+.u-alert{
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.u-alert-success{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
 .u-textNotBottom{
      margin-bottom:0px; 
 }
