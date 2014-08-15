@@ -8,11 +8,12 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.post('/', function(req, res) {
+
+router.post('/mail', function(req, res) {
 	var name = req.body.name;
 	var email = req.body.email;
 	var motive = req.body.motive;
-	debug(name);	
+	debug("name");	
 	
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
