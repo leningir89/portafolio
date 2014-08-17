@@ -2,6 +2,7 @@ var express = require('express');
 var managers = require('../lib/managers')
 var debug = require('debug')('my-aplication');
 var transporter = require('../lib/mail')
+var contact = require('../lib/contact')
 var router = express.Router();
 
 /* GET users listing. */
