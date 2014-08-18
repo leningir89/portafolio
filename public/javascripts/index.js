@@ -27,10 +27,17 @@ function save_contact(data){
             console.log(response.responseText);
         }
       }).done(function(respuesta){ 
-        console.log(respuesta);
-           $('form .u-alert').html(respuesta);
-           setTimeout(show_message , 300) 
-           clean_form();
+              
+           if(!respuesta != ''){
+                $('form .u-alert').html('<strong>Bien hecho!</strong> tu mensaje fue enviado exitosamente.');
+                clean_form();
+           }
+           else{
+              $('form .u-alert').html(respuesta);
+           }
+
+          setTimeout(show_message , 300);
+          
       });
 
 }

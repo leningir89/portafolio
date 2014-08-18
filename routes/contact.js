@@ -1,5 +1,5 @@
 var express = require('express');
-var managers = require('../lib/managers')
+var managers = require('../lib/managers/contact')
 var debug = require('debug')('my-aplication');
 var transporter = require('../lib/mail')
 var contact = require('../lib/contact')
@@ -13,35 +13,44 @@ router.post('/', function(req, res) {
 	var email = object.email;
 	var motive = object.motive;	
 
-	if(managers.contact.validates_fields(name,email,motive))
+	if(managers.validates_fields(name,email,motive))
 	{		
-		res.send(JSON.stringify('Todos los campos son obligatorios'));
+		return res.send(JSON.stringify(managers.REQUIRED_FIELDS));
 	}
-	if(! managers.contact.valid_email(email))
+	if(! managers.valid_email(email))
 	{	
-		res.send(JSON.stringify('El email no es valido'));	
+		return res.send(JSON.stringify(managers.INVALID_MAIL));	
 	}
 
-	// // setup e-mail data with unicode symbols
-	// var mailOptions = {
-	//     from: "'" + name + "<" + email + ">'", // sender address
-	//     to: 'Lenin Girón, ing.leningir@gmail.com', // list of receivers
-	//     subject: 'Contacto', // Subject line
-	//     text: 'Hola', // plaintext body
-	//     html: '<b>' + motive + '</b>' // html body
-	// };
+	//Guardamos en contacto
+	var Contact = new contact({ name: name , email:email, motive:motive });	
+	Contact.save(function (err, Contact) {
+	  	if (err){
+	  		return res.send(err);
+	  	}
 
-	// // send mail with defined transport object
-	// /*transporter.sendMail(mailOptions, function(error, info){
-	//     if(error){
-	//         console.log(error);
-	//     }else{
-	//         console.log('Message sent: ' + info.response);
-	//     }
-	// });*/
-	
-  	res.send(JSON.stringify('<strong>Bien hecho!</strong> tu mensaje fue enviado exitosamente.'));
+	  	//Enviamos el mail	  	
+	  	// setup e-mail data with unicode symbols
+		var mailOptions = {
+		    from: "'" + name + "<" + email + ">'", // sender address
+		    to: 'Lenin Girón, ing.leningir@gmail.com', // list of receivers
+		    subject: 'Contacto', // Subject line
+		    text: 'Hola', // plaintext body
+		    html: '<b>' + motive + '</b>' // html body
+		};
 
+		// send mail with defined transport object
+		transporter.sendMail(mailOptions, function(err, info){
+		    if(err){
+		        return res.send(err);
+		    }else{
+		        console.log('Message sent: ' + info.response);
+		        res.send(JSON.stringify(''));
+		    }
+		});
+
+	})
+	 
 });
 
 
