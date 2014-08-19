@@ -119,8 +119,9 @@ p{
 /* Componentes */
 
 /* MainMenu */
+
 .MainMenu{
-    background:#07749f ;
+    background:#22282e ;
     height: 3.75em;
     left:0;
     position: fixed;
@@ -149,6 +150,25 @@ p{
 
 .MainMenu-active{
     text-decoration: line-through !important;
+}
+
+
+/* Estilos #nav-mobile y lo ocultamos */
+#MainMenu-mobile{
+    display: none;
+    background: url(../images/nav.png) no-repeat center center;
+    float: right;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top:0;
+    opacity: .6;
+}
+ 
+/* Agregaremos esta clase a #nav-mobile, cuando el menu mobile haya sido desplegado */
+#MainMenu-mobile.nav-active{
+        opacity: 1;
 }
 
 /* Header */
@@ -317,7 +337,17 @@ a .Work-image:hover{
     border: none;
     color: white;
     padding: .5em;
+}}
+@media screen and (max-width: 350px){  
+    .Footer-textarea,
+    .Footer-input
+    {
+        width: 13em;    
+    }
+
+
 }
+
 @media screen and (max-width: 400px){
     .Footer-form
     {
@@ -331,7 +361,7 @@ a .Work-image:hover{
     }
     .Work-image
     { 
-        width: 280px; 
+        width: 270px; 
         height: 225px;
     }
 
@@ -346,11 +376,42 @@ a .Work-image:hover{
 }
 @media screen and (max-width: 850px){
 
-    .u-containerDefault
-    {
+    .u-containerDefault{
         width: 90%;     
     }
 
+    #MainMenu-mobile{ 
+        display: block; 
+    }
+ 
+    /* Fijamos nuestro nav en 100% ancho y dejamos de flotarlo */
+    #MainMenu{
+        width: 100%;
+        float: none;       
+    }
+    .MainMenu-item{
+        display: block;  
+        background: #33363b;
+        border-bottom: 1px solid #282b30;
+    }
+    .MainMenu-list{
+        box-shadow: 0 1px 2px rgba(0,0,0,.5);
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    #MainMenu li:last-child{ 
+        border-bottom: 0;
+    }
+           
+    #MainMenu .MainMenu-item:hover{
+        background:#2a2d33
+    }
+ 
+    #MainMenu ul.open-menu{
+        max-height: 400px;
+        transition: max-height .4s;
+    }
 }
 
 @media screen and (max-width: 1100px) {

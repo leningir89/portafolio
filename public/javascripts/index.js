@@ -13,6 +13,19 @@ $(function() {
         save_contact(object);  // Guardamos y mandamos el mail de contacto
 
     });
+
+      var btn_movil = $('#MainMenu-mobile');
+      menu = $('#MainMenu').find('ul');
+      
+       // Al dar click agregar/quitar clases que permiten el despliegue del menú
+       btn_movil.on('click', function (e) {
+          e.preventDefault();
+   
+          var el = $(this);
+   
+          el.toggleClass('nav-active');
+          menu.toggleClass('open-menu');
+      });
  		
 });
 
