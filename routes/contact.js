@@ -1,7 +1,8 @@
 var express = require('express');
+var validator = require('validator');
 var managers = require('../lib/managers/contact')
 var debug = require('debug')('my-aplication');
-var transporter = require('../lib/mail')
+var mail = require('../lib/mail')
 var contact = require('../lib/contact')
 var router = express.Router();
 
@@ -9,38 +10,29 @@ var router = express.Router();
 router.post('/', function(req, res) {
 
 	var object = JSON.parse(req.body.data);
-	var name = object.name;
+	var name = validator.escape(object.name);
 	var email = object.email;
-	var motive = object.motive;	
+	var motive = validator.escape(object.motive);	
 
 	if(managers.validates_fields(name,email,motive))
 	{		
 		return res.send(JSON.stringify(managers.REQUIRED_FIELDS));
 	}
-	if(! managers.valid_email(email))
+	if(! validator.isEmail(email))
 	{	
 		return res.send(JSON.stringify(managers.INVALID_MAIL));	
 	}
-
-	//Guardamos en contacto
+	
 	var Contact = new contact({ name: name , email:email, motive:motive });	
-	Contact.save(function (err, Contact) {
+	Contact.save(function (err, Contact)  // Guardamos el contacto
+	{
 	  	if (err){
 	  		return res.send(err);
 	  	}
-
-	  	//Enviamos el mail	  	
-	  	// setup e-mail data with unicode symbols
-		var mailOptions = {
-		    from: "'" + name + "<" + email + ">'", // sender address
-		    to: 'Lenin Girón, ing.leningir@gmail.com', // list of receivers
-		    subject: 'Contacto', // Subject line
-		    text: 'Hola', // plaintext body
-		    html: '<b>' + motive + '</b>' // html body
-		};
-
-		// send mail with defined transport object
-		transporter.sendMail(mailOptions, function(err, info){
+		  
+		var mailOptions = mail.mail_options(name,email,motive);
+		mail.transporter.sendMail(mailOptions, function(err, info) 	// Enviamos el mail
+		{
 		    if(err){
 		        return res.send(err);
 		    }else{
@@ -48,7 +40,6 @@ router.post('/', function(req, res) {
 		        res.send(JSON.stringify(''));
 		    }
 		});
-
 	})
 	 
 });

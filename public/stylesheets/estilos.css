@@ -88,6 +88,9 @@
 .u-textBlue{
     color: #008cba;
 }
+.u-textGreen{
+    color: #079a9f;
+}
 .u-containerDefault{
     width: 55em;
     margin: 0 auto;
@@ -119,15 +122,18 @@ p{
 /* Componentes */
 
 /* MainMenu */
-
 .MainMenu{
-    background:#22282e ;
-    height: 3.75em;
+   /* background:#22282e ;*/
+    background: #07749f;
+    height: 3.7em;
     left:0;
     position: fixed;
     right: 0;
     text-align: center;
     top:0;
+}
+.MainMenu a:hover {
+    
 }
 
 .MainMenu-list{
@@ -218,9 +224,10 @@ p{
 .Header-job{ 
     display: inline-block;
     font-size: 1em;
-    font-weight: 300;  
-    padding: .3em 1em;
-    text-decoration: underline;
+    padding: 5px 8px;
+    font-weight: 600; 
+    color: white;
+    background: #079a9f;
 }
 
 .Header-phrase{   
@@ -338,6 +345,7 @@ a .Work-image:hover{
     color: white;
     padding: .5em;
 }}
+
 @media screen and (max-width: 350px){  
     .Footer-textarea,
     .Footer-input
@@ -368,11 +376,22 @@ a .Work-image:hover{
 }
 @media screen and (max-width: 600px){
 
-    .Footer-left
-    {
-        width: 90%;
-    }    
-
+   figure {
+        margin: 1em 10px;
+    }
+    .Footer-left{
+        width: 85%;
+    }       
+    .Header-name{
+        font-size: 1.3em;      
+    } 
+    .Header-job{    
+        padding: .3em .5em;   
+    }
+    .Header-description{
+        margin-top: 1em;
+    }
+    
 }
 @media screen and (max-width: 850px){
 
@@ -391,8 +410,8 @@ a .Work-image:hover{
     }
     .MainMenu-item{
         display: block;  
-        background: #33363b;
-        border-bottom: 1px solid #282b30;
+        background: #07749f;
+        border-bottom: 1px solid #06668c;
     }
     .MainMenu-list{
         box-shadow: 0 1px 2px rgba(0,0,0,.5);
@@ -405,7 +424,7 @@ a .Work-image:hover{
     }
            
     #MainMenu .MainMenu-item:hover{
-        background:#2a2d33
+        background:#06668c;
     }
  
     #MainMenu ul.open-menu{
